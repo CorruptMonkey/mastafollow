@@ -18,13 +18,19 @@ setInterval(function(){
     ).then(
         resp => {
             resp.data.forEach(function(data){
+                var dnf = false;
                 if(!accounts[data.account.id])
                 {
+                    if( data.account.note.indexOf('#nobot') > 0 )
+                    {
+                        console.log("[ERROR]\tWill not follow " + data.account.acct + ":" + data.account.id + " due to #nobot tag.");
+                        dnf = true;
+                    }
                     config.user_blacklist.forEach(function(item){
                         if(item.toLowerCase() == data.account.acct.toLowerCase())
                         {
                             console.log("[ERROR]\tWill not follow " + data.account.acct + ":" + data.account.id + " due to blacklist restrictions on the user.");
-                            return;
+                            dnf = true;
                         }
                     });
                     config.instance_blacklist.forEach(function(item){
@@ -32,18 +38,19 @@ setInterval(function(){
                             if(remote_instance && remote_instance.toLowerCase() == item.toLowerCase())
                             {
                                 console.log("[ERROR]\tWill not follow " + data.account.acct + ":" + data.account.id + " due to blacklist restrictions on the instance.");
-                                return;
+                                dnf = true;
                             }
                     });
-
-                    M.post('accounts/' + data.account.id + '/follow',{
-                        reblogs:true
-                    }).then(resp => {
-                        console.log("[FOLLOW]\t" + data.account.acct + ":" + data.account.id);
-                    }).catch(err => {
-                        console.log("[ERROR]\t" + err.message);
-                    });
-
+                    if(dnf == false)
+                    {
+                        M.post('accounts/' + data.account.id + '/follow',{
+                            reblogs:true
+                        }).then(resp => {
+                            console.log("[FOLLOW]\t" + data.account.acct + ":" + data.account.id);
+                        }).catch(err => {
+                            console.log("[ERROR]\t" + err.message);
+                        });
+                    }
                 }
                 accounts[data.account.id] = true;
             });
