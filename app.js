@@ -49,4 +49,4 @@ setInterval(function(){
             });
         }
     );
-},1000);
+},config.checkInterval);

@@ -1,6 +1,7 @@
 {
     "access_token":"",
     "instance_url":"https://lasershark.army",
+    "checkInterval":60000,
     "user_blacklist":[
         "example@example.com"
     ],
