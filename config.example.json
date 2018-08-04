@@ -1,0 +1,10 @@
+{
+    "access_token":"",
+    "instance_url":"https://lasershark.army",
+    "user_blacklist":[
+        "example@example.com"
+    ],
+    "instance_blacklist":[
+        "example.com"
+    ]
+}
