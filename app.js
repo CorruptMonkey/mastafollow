@@ -21,7 +21,7 @@ setInterval(function(){
                 var dnf = false;
                 if(!accounts[data.account.id])
                 {
-                    if( data.account.note.indexOf('#nobot') > 0 )
+                    if( data.account.note.toLowerCase().indexOf('#nobot') > 0 )
                     {
                         console.log("[ERROR]\tWill not follow " + data.account.acct + ":" + data.account.id + " due to #nobot tag.");
                         dnf = true;
