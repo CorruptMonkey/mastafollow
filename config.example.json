@@ -2,6 +2,13 @@
     "access_token":"",
     "instance_url":"https://lasershark.army",
     "checkInterval":60000,
+    "mysql":{
+        "use":false,
+        "host":"localhost",
+        "user":"username",
+        "pass":"password",
+        "db":"database_name"
+    },
     "user_blacklist":[
         "example@example.com"
     ],

@@ -7,10 +7,11 @@
       "homepage": "https://LaserShark.army/users/Rob"
     },
     "description": "A bot that follows everyone it sees.",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "main": "app.js",
     "dependencies": {
-        "mastodon":"^1.2.2"
+        "mastodon":"^1.2.2",
+        "mysql":"^2.16.0"
     }
   }
   
